@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT Clarity Scan — Beta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0c0b09;
+  --bg2:       #111009;
+  --bg3:       #161410;
+  --surface:   #1a1814;
+  --surface2:  #201e18;
+  --gold:      #c4a055;
+  --gold-dim:  #705828;
+  --gold-pale: #d4b575;
+  --text:      #f0ece3;
+  --text2:     #b8b099;
+  --text3:     #7a7468;
+  --text4:     #4a4640;
+  --border:    #2a2720;
+  --border2:   #1e1c16;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:640px;margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-family:'Inter',sans-serif;
+  font-size:10px;font-weight:600;
+  letter-spacing:.12em;
+  color:var(--text3);
+  text-transform:uppercase;
+  margin-bottom:14px;
+  display:block;
+}
+.rule{width:28px;height:1px;background:var(--text4);margin:28px 0}
+section{padding:64px 0;border-bottom:1px solid var(--border)}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(12,11,9,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:52px;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;color:var(--text);font-weight:500;
+}
+.nav-logo span{color:var(--gold)}
+
+/* ── HERO ── */
+#hero{padding:80px 0 64px;border-bottom:1px solid var(--border)}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:12px;
+  margin-bottom:28px;
+}
+.hero-kicker::before{content:'';display:block;width:28px;height:1px;background:var(--border)}
+.hero-kicker span{
+  font-family:'DM Mono',monospace;
+  font-size:10px;font-weight:400;letter-spacing:.12em;
+  color:var(--gold);text-transform:uppercase;
+}
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,7vw,50px);
+  line-height:1.1;font-weight:500;
+  letter-spacing:-.01em;
+  margin-bottom:24px;
+  color:var(--text);
+}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{
+  font-size:16px;line-height:1.8;
+  color:var(--text2);
+  margin-bottom:0;
+  max-width:480px;
+}
+
+/* ── BRETT'S WHY ── */
+#why{background:var(--bg2)}
+.why-body{font-size:15px;line-height:1.85;color:var(--text2)}
+.why-body p{margin-bottom:16px}
+.why-body p:last-child{margin-bottom:0}
+.why-pull{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,4vw,26px);
+  font-style:italic;
+  font-weight:500;
+  color:var(--text);
+  line-height:1.3;
+  padding:28px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  margin:28px 0;
+}
+
+/* ── PAIN STACK ── */
+.pain-item{
+  padding:16px 0;
+  border-bottom:1px solid var(--border2);
+  font-size:15px;color:var(--text2);
+  line-height:1.65;
+  transition:color .2s;
+}
+.pain-item:hover{color:var(--text)}
+.pain-item:last-child{border-bottom:none}
+
+/* ── CLICHÉ GRID ── */
+#cliche{background:var(--bg2)}
+.cliche-words{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;margin:28px 0;
+  background:var(--border);
+}
+.cliche-word{
+  padding:22px 16px;
+  background:var(--surface);
+  text-align:center;
+}
+.cliche-word span{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:500;color:var(--text3);
+  text-decoration:line-through;
+  text-decoration-color:var(--gold);
+  text-decoration-thickness:1px;
+}
+
+/* ── WHAT IT IS ── */
+.what-body{font-size:15px;line-height:1.85;color:var(--text2)}
+.what-body p{margin-bottom:16px}
+.what-body p:last-child{margin-bottom:0}
+.accent-block{
+  padding:22px 24px;
+  background:var(--surface);
+  border-left:2px solid var(--gold);
+  font-size:15px;line-height:1.75;
+  color:var(--text2);
+  margin:24px 0;
+}
+.accent-block strong{color:var(--text)}
+
+/* ── FOR YOU IF ── */
+.for-item{
+  display:flex;gap:14px;
+  padding:14px 0;
+  border-bottom:.5px solid var(--border2);
+  align-items:flex-start;
+}
+.for-item:last-child{border-bottom:none}
+.for-marker{
+  font-family:'DM Mono',monospace;
+  font-size:9px;color:var(--gold);
+  margin-top:4px;flex-shrink:0;letter-spacing:.08em;
+}
+.for-text{font-size:15px;color:var(--text2);line-height:1.65}
+
+/* ── WHAT HAPPENS ── */
+#process{background:var(--bg2)}
+.phase-list{display:flex;flex-direction:column;gap:0;margin-top:24px}
+.phase-item{
+  display:flex;gap:20px;
+  padding:20px 0;
+  border-bottom:1px solid var(--border2);
+  align-items:flex-start;
+}
+.phase-item:last-child{border-bottom:none}
+.phase-num{
+  font-family:'DM Mono',monospace;
+  font-size:10px;color:var(--gold);
+  flex-shrink:0;width:20px;
+  margin-top:2px;letter-spacing:.06em;
+}
+.phase-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+.phase-desc{font-size:13px;color:var(--text3);line-height:1.6}
+
+/* ── BETA CTA ── */
+#beta{background:var(--bg2);text-align:center;padding:80px 0;border-bottom:none}
+.beta-badge{
+  display:inline-block;
+  font-family:'DM Mono',monospace;
+  font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid var(--gold-dim);
+  padding:4px 12px;
+  margin-bottom:24px;
+}
+.beta-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,6vw,44px);
+  font-weight:500;
+  line-height:1.1;
+  color:var(--text);
+  margin-bottom:20px;
+}
+.beta-h em{font-style:italic;color:var(--gold)}
+.beta-sub{
+  font-size:15px;color:var(--text2);
+  line-height:1.8;max-width:460px;
+  margin:0 auto 36px;
+}
+.btn-beta-main{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--bg);
+  font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:700;
+  letter-spacing:.02em;
+  padding:18px 32px;
+  border:none;border-radius:0;
+  cursor:pointer;text-align:center;
+  text-decoration:none;
+  transition:background .2s,transform .1s;
+  line-height:1.4;
+}
+.btn-beta-main:hover{background:var(--gold-pale);transform:translateY(-1px)}
+.beta-fine{
+  font-size:12px;color:var(--text4);
+  margin-top:16px;
+}
+
+/* ── FOOTER ── */
+footer{
+  padding:32px 24px;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text2)}
+.footer-copy{font-size:11px;color:var(--text4)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:639px){
+  #hero{padding:56px 0 48px}
+  section{padding:48px 0}
+  #beta{padding:56px 0}
+  .hero-sub{font-size:17px}
+  .why-body,.what-body,.pain-item,.for-text{font-size:16px}
+  .cliche-words{grid-template-columns:1fr 1fr}
+  .btn-beta-main{display:block;width:100%;padding:18px 24px}
+}
+@media(min-width:640px){
+  .cliche-words{grid-template-columns:repeat(4,1fr)}
+}
+@media(min-width:720px){
+  .container{padding:0 40px}
+  section{padding:80px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">The <span>Creative</span> Standard</div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-kicker"><span>PT Clarity Scan · Beta</span></div>
+    <h1 class="hero-h1">
+      You get results.<br>
+      Your clients know it.<br>
+      <em>Your content doesn't show it.</em>
+    </h1>
+    <p class="hero-sub">
+      A documentary-style interview that uncovers why the right clients trust you — in your own words, from your own experience. Not a quiz. Not a branding exercise. A real conversation.
+    </p>
+  </div>
+</section>
+
+<!-- BRETT'S WHY -->
+<section id="why">
+  <div class="container">
+    <span class="eyebrow">Why this exists</span>
+    <div class="why-body">
+      <p>I have worked with a lot of trainers. Some of the best coaches I know are also some of the worst marketers I have ever seen — and it is not because they do not care. It is because nobody taught them to talk about their work the way their work actually deserves to be talked about.</p>
+      <p>Fitness changed my life. I know what it means to be on the other side of a great coach — someone who noticed things about you before you noticed them yourself, who held a standard you didn't know you needed, who changed the way you thought about what you were capable of.</p>
+      <p>Most of the trainers I have worked with have that same quality. They just have no idea how to show it to the people who need it most.</p>
+    </div>
+    <div class="why-pull">
+      "Having the story is one thing.<br>Being able to deliver it is the other."
+    </div>
+    <div class="why-body">
+      <p>The PT Clarity Scan finds the story. What you do with it after is the work. This tool is my way of helping coaches I respect build something that matches how good they actually are.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN STACK -->
+<section id="pain">
+  <div class="container">
+    <span class="eyebrow">Sound familiar?</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,5vw,28px);line-height:1.3;color:var(--text);margin-bottom:28px;">
+      You already know something's off.<br>You just can't name it yet.
+    </h2>
+    <div>
+      <div class="pain-item">"I know I get results — I just don't know how to explain what makes me different from the trainer down the hall."</div>
+      <div class="pain-item">"My content looks like everyone else's. Transformation photos. Motivational quotes. Tips."</div>
+      <div class="pain-item">"I keep attracting clients who quit after six weeks and blame the program."</div>
+      <div class="pain-item">"ChatGPT gives me fitness content that could belong to any trainer alive."</div>
+      <div class="pain-item">"I'm competing against $15-a-month apps and I can't explain why I'm worth more."</div>
+      <div class="pain-item">"I know exactly what kind of client I'm built for. I just can't put it into words they'd recognize."</div>
+      <div class="pain-item">"I post consistently. It feels hollow. Like I'm performing a version of myself that isn't quite right."</div>
+    </div>
+    <div class="accent-block" style="margin-top:28px">
+      None of this is a content problem. It is not even a marketing problem.<br>
+      <strong>It is a clarity problem.</strong><br><br>
+      You cannot communicate what you have not yet seen clearly.
+    </div>
+  </div>
+</section>
+
+<!-- THE CLICHÉ CHALLENGE -->
+<section id="cliche">
+  <div class="container">
+    <span class="eyebrow">The problem in four words</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,5vw,26px);line-height:1.3;color:var(--text);margin-bottom:8px;">
+      Try explaining your coaching without using these.
+    </h2>
+    <div class="cliche-words">
+      <div class="cliche-word"><span>Results</span></div>
+      <div class="cliche-word"><span>Accountability</span></div>
+      <div class="cliche-word"><span>Transformation</span></div>
+      <div class="cliche-word"><span>Lifestyle</span></div>
+    </div>
+    <div class="what-body">
+      <p>Every trainer uses all four. They stopped meaning anything the moment everyone started using them.</p>
+      <p>The question is not whether you get results. The question is: what do you actually do differently that the right client would care about — and can you say it in a way no other trainer could?</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOR YOU IF -->
+<section id="foryou">
+  <div class="container">
+    <span class="eyebrow">Is this for you?</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,5vw,26px);line-height:1.3;color:var(--text);margin-bottom:24px;">
+      This is for you if:
+    </h2>
+    <div>
+      <div class="for-item"><span class="for-marker">◆</span><span class="for-text">You have coached real clients and know your work changes people — but your content does not show that</span></div>
+      <div class="for-item"><span class="for-marker">◆</span><span class="for-text">You have tried posting consistently and it felt like you were performing a version of yourself that wasn't quite right</span></div>
+      <div class="for-item"><span class="for-marker">◆</span><span class="for-text">You have strong opinions about how change actually happens — and you have never put them into words</span></div>
+      <div class="for-item"><span class="for-marker">◆</span><span class="for-text">You know exactly what kind of client gets the best results with you — but you can't describe them in a way they'd recognize themselves</span></div>
+      <div class="for-item"><span class="for-marker">◆</span><span class="for-text">You are tired of attracting clients who want you to care more about their goals than they do</span></div>
+      <div class="for-item"><span class="for-marker">◆</span><span class="for-text">You have used AI for content and the output sounded polished, competent, and completely unlike you</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HAPPENS -->
+<section id="process">
+  <div class="container">
+    <span class="eyebrow">What happens inside</span>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,5vw,26px);line-height:1.3;color:var(--text);margin-bottom:8px;">
+      Five phases. One real conversation.
+    </h2>
+    <p style="font-size:14px;color:var(--text3);margin-bottom:0;line-height:1.7">45 to 75 minutes. It will push back on vague answers. Specific moments beat polished stories.</p>
+    <div class="phase-list">
+      <div class="phase-item">
+        <span class="phase-num">01</span>
+        <div>
+          <div class="phase-name">Warm Up</div>
+          <div class="phase-desc">Your current story — how you talk about your work right now, and where the generic language is hiding.</div>
+        </div>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num">02</span>
+        <div>
+          <div class="phase-name">First 100 Lunges</div>
+          <div class="phase-desc">The moment that shaped how you coach. The lie you had to unlearn. What fitness changed that nobody could see from the outside.</div>
+        </div>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num">03</span>
+        <div>
+          <div class="phase-name">Ass-to-Ankle Squats</div>
+          <div class="phase-desc">The client you will never forget. The client you should have said no to earlier. What your best clients have in common — beyond wanting results.</div>
+        </div>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num">04</span>
+        <div>
+          <div class="phase-name">Burnout Set</div>
+          <div class="phase-desc">What you believe that half the industry would push back on. The conversations you should own. What you are willing to say plainly that other trainers soften.</div>
+        </div>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num">05</span>
+        <div>
+          <div class="phase-name">Final Rep</div>
+          <div class="phase-desc">Confirm the strongest material. Identify what you are still tempted to polish. Name the one reason the right client should trust you.</div>
+        </div>
+      </div>
+    </div>
+    <div class="accent-block" style="margin-top:28px">
+      <strong>What you leave with:</strong> An 11-section profile that explains how you see fitness, what you stand for, why you can guide this, and who is actually built for your coaching — plus a content direction and a lead filter so you stop wasting time on clients who were never going to stay.
+    </div>
+  </div>
+</section>
+
+<!-- BETA CTA -->
+<section id="beta">
+  <div class="container">
+    <div class="beta-badge">Beta · Limited Access</div>
+    <h2 class="beta-h">
+      You have been selected<br>to test this because<br>
+      <em>Seeley thinks you're<br>a badass human.</em>
+    </h2>
+    <p class="beta-sub">
+      This is a beta test — not a product launch. I am running the PT Clarity Scan with a small group of coaches I respect before it goes anywhere near the public. You get full access free. In exchange, I want your honest read on where it works and where it breaks.
+    </p>
+    <a href="YOUR_BETA_LINK" class="btn-beta-main">
+      I'm in — start the PT Clarity Scan
+    </a>
+    <p class="beta-fine">Free for beta testers. Feedback is the ask — not a review, not a testimonial. Just honesty.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">PT Clarity Scan · by The Creative Standard</div>
+  <div class="footer-copy">© 2026 · All rights reserved</div>
+</footer>
+
+</body>
+</html>
